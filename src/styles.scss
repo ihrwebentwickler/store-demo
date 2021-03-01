@@ -1,1 +1,55 @@
-/* You can add global styles to this file, and also import other style files */
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+a, .action-color {
+  font-weight: bold;
+  color: blue;
+}
+
+header, .content {
+  padding: 18px;
+  width: 90%;
+  background: #F1F1F1;
+  margin-left: calc(5% - 18px);
+}
+
+header {
+  height: 30px;
+  border-bottom: 2px solid black;
+
+  a, span, div {
+    font-size: 1rem;
+  }
+
+  a {
+    display: inline-block;
+    margin-left: 20px;
+    text-decoration: none;
+
+    &.active-link {
+      color: orange;
+    }
+  }
+}
+
+.content {
+  margin-top: 20px;
+}
+
+table {
+  width: 100%;
+  .checkbox {
+    padding-left: 20px;
+  }
+}
+
+.padding-left {
+  padding-left: 50px;
+}
+

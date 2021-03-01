@@ -1,0 +1,50 @@
+<div class="content">
+  <div>
+    <mat-form-field>
+      <mat-label>Suche in Filmliste</mat-label>
+      <label>
+        <input matInput (keyup)="onApplyFilter($event)" placeholder="Suche Star-Wars-Filme">
+      </label>
+    </mat-form-field>
+    <span class="padding-left action-color">Wähle Deine Lieblings-Filme aus.</span>
+  </div>
+
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort>
+      <ng-container matColumnDef="title">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Title</mat-header-cell>
+        <mat-cell *matCellDef="let row;">{{row.title}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="created">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Created</mat-header-cell>
+        <mat-cell *matCellDef="let row;">{{row.created | date:'d.MM.YYYY'}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="producer">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Producer</mat-header-cell>
+        <mat-cell *matCellDef="let row;">{{row.producer}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="director">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Director</mat-header-cell>
+        <mat-cell *matCellDef="let row;">{{row.director}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="isFavouritMovie">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Lieblings-Filme?</mat-header-cell>
+        <mat-cell *matCellDef="let row;" class="checkbox">
+          <mat-checkbox [(ngModel)]="row.isFavouritMovie"
+                        (ngModelChange)="onCheckedUpdateFavouritMovie(row)">
+          </mat-checkbox>
+        </mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="displayedColumns">
+      </mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+    </table>
+  </div>
+  <div *ngIf="isLoading" class="loading-spinner">
+    <mat-progress-spinner
+      color="primary"
+      mode="indeterminate">
+    </mat-progress-spinner>
+  </div>
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</div>
