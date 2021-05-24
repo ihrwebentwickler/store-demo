@@ -4,13 +4,10 @@ import {NgModule} from '@angular/core';
 import {AppComponent} from './core/components/app.component';
 import {AppRoutingModule} from './app-routing.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {DataComponent} from './features/data/data.component';
-import {DataService} from './features/data/data.service';
+import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {HeaderComponent} from './core/header/header.component';
-import {HelloComponent} from './features/hello/hello.component';
 import {HttpClientModule} from '@angular/common/http';
-import {MaterialModule} from './material.module';
 import {RestApiService} from './shared/services/rest-api.service';
 
 @NgModule({
@@ -18,18 +15,15 @@ import {RestApiService} from './shared/services/rest-api.service';
     AppRoutingModule,
     BrowserAnimationsModule,
     BrowserModule,
+    CommonModule,
     HttpClientModule,
-    MaterialModule,
     FormsModule
   ],
   declarations: [
     AppComponent,
-    DataComponent,
-    HeaderComponent,
-    HelloComponent
+    HeaderComponent
   ],
   providers: [
-    DataService,
     RestApiService
   ],
   bootstrap: [AppComponent]

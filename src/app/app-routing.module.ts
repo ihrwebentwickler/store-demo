@@ -6,11 +6,15 @@ import {HelloComponent} from './features/hello/hello.component';
 const routes: Routes = [
   {
     path: 'hello',
-    component: HelloComponent
+    component: HelloComponent,
+    loadChildren: () =>
+      import('./features/hello/hello.module').then(m => m.HelloModule)
   },
   {
     path: 'data',
-    component: DataComponent
+    component: DataComponent,
+    loadChildren: () =>
+      import('./features/data/data.module').then(m => m.DataModule)
   },
   {
     path: '**',
