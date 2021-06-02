@@ -1,4 +1,7 @@
+import { ID } from '@datorama/akita';
+
 export interface Film {
+  'id': ID;
   'characters': string[];
   'created': Date;
   'director': string;

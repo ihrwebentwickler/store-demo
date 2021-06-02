@@ -1,24 +1,24 @@
-import {HttpClient, HttpErrorResponse} from '@angular/common/http';
-import {Injectable} from '@angular/core';
-import {catchError, delay, map} from 'rxjs/operators';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { catchError, delay, map } from 'rxjs/operators';
 import {
   IRestApi,
   IRestCalculatedConfiguration
-} from '../interfaces/rest.interface';
-import {Observable, of, throwError} from 'rxjs';
+} from '../../interfaces/rest.interface';
+import { Observable, of, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class RestApiService {
-  baseApiUrl = '/api/abc';
+  baseApiUrl = '';
 
   constructor(
     private readonly httpClient: HttpClient
   ) {
   }
 
-  static handleHttpResponseError<T>(operation: string, err: Error, fullRestUrl: string): Observable<[]> {
+  static handleHttpResponseError(operation: string, err: Error, fullRestUrl: string): Observable<[]> {
     let dataError: {};
     if (err instanceof HttpErrorResponse) {
       const errorMessage = err.error ? err.error : err.message;

@@ -1,7 +1,7 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 
-import {EntityState, EntityStore, StoreConfig} from '@datorama/akita';
-import {Film} from '../../shared/interfaces/film.interface';
+import { EntityState, EntityStore, StoreConfig } from '@datorama/akita';
+import { Film } from '../../shared/interfaces/film.interface';
 
 export interface StateFilm extends EntityState<Film> {
 }

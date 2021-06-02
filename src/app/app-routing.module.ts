@@ -1,7 +1,7 @@
-import {NgModule} from '@angular/core';
-import {Routes, RouterModule} from '@angular/router';
-import {DataComponent} from './features/data/data.component';
-import {HelloComponent} from './features/hello/hello.component';
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+import { DataComponent } from './features/data/pages/data.component';
+import { HelloComponent } from './features/hello/pages/hello.component';
 
 const routes: Routes = [
   {

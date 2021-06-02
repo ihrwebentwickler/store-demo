@@ -1,0 +1,19 @@
+<div class="content">
+  <h3>values of store</h3>
+  <hr>
+  <div *ngIf="films$ | async as films">
+    <b>selected films:</b><br>
+    <div *ngFor="let film of films;">
+      <span *ngIf="film.isFavouritMovie">producer: {{film.producer}}, title: {{film.title}}<br></span>
+    </div>
+  </div>
+  <div *ngIf="tableProperties$ | async as tableProperties">
+    <p>
+      <b>table-property-values (table with id -{{tableProperties.id}}-):</b><br>
+      sort-direction: {{tableProperties.sort.direction}}<br>
+      active-sort: {{tableProperties.sort.active}}<br>
+      last filter-value: {{tableProperties.filter.lastValue}}<br>
+      items per page: {{tableProperties.itemsPerPage}}
+    </p>
+  </div>
+</div>

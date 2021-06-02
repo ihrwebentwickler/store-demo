@@ -1,8 +1,14 @@
-import {Film} from '../shared/interfaces/film.interface';
-import {ITableProperties} from '../shared/interfaces/app.interface';
+import { SortDirection } from '@angular/material/sort';
+import { ID } from '@datorama/akita';
 
-export interface IFilmState {
-  list?: Array<Film>;
-  tableProperties?: ITableProperties;
-  error: Error | boolean;
+export interface TableProperties {
+  id: ID;
+  sort: {
+    direction: SortDirection;
+    active: string;
+  };
+  filter: {
+    lastValue: string;
+  };
+  itemsPerPage: number
 }
