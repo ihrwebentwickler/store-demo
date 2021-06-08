@@ -1,16 +1,17 @@
 import { Injectable } from '@angular/core';
 
-import { Observable, of} from 'rxjs';
+import * as _ from 'lodash';
+import { Observable, of } from 'rxjs';
 import { TableProperties } from '../../../state/store.interface';
 import { TableQuery } from '../../../state/queries/table.query';
 import { TableStore } from '../../../state/stores/table.store';
-import { ID } from '@datorama/akita';
+import { ID, EntityState, getEntityType } from '@datorama/akita';
+import { first, map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
-export class TableService {
-
+export class TableService<S extends EntityState = any, E = getEntityType<S>> {
   constructor(
     private readonly tableStore: TableStore,
     private readonly tableQuery: TableQuery
@@ -42,9 +43,22 @@ export class TableService {
     return valueTable;
   }
 
-  updateTableProperties(ValuesTableProperties: TableProperties): void {
-    if (this.tableQuery.hasEntity(ValuesTableProperties.id)) {
-      this.tableStore.update(ValuesTableProperties.id, ValuesTableProperties);
-    }
+  updateTableProperties(changeData: { id: ID, tableData: { key: string; value: string | number | boolean }[] }): void {
+    const currentTableData$ = this.getTableProperties(changeData.id);
+    currentTableData$.pipe(first(), map((dataTableProps: TableProperties) => {
+        if (dataTableProps && Array.isArray(changeData.tableData)) {
+          const dataTableUpdate = _.clone(dataTableProps) as unknown as { [p: string]: string | number | boolean };
+          changeData.tableData.forEach((item: { [p: string]: string | number | boolean }) => {
+            const keyString: string = String(item.key);
+
+            if (typeof dataTableUpdate[keyString] !== "undefined") {
+              dataTableUpdate[keyString] = item.value;
+            }
+          });
+
+          this.tableStore.update(changeData.id, dataTableUpdate);
+        }
+      })
+    ).subscribe();
   }
 }

@@ -1,11 +1,11 @@
 <div class="content">
   <div class="filter-group">
-    <label>Filter</label>
-    <input (keyup)="applyFilter($event)" placeholder="filter films"
-           [(ngModel)]="tableProperties.filter.lastValue" #input>
+    <label for="label-filter">Filter</label>
+    <input placeholder="filter films" id="label-filter"
+           [(ngModel)]="dataSource.filter" #input>
   </div>
   <div>
-    <table mat-table [dataSource]="dataSource" matSort (matSortChange)="onSortChange($event)" class="mat-elevation-z8 full-size"
+    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8 full-size"
            matSortActive="title" matSortDirection="asc" matSortDisableClear>
       <ng-container matColumnDef="title">
         <td mat-header-cell *matHeaderCellDef mat-sort-header>Title</td>
@@ -44,8 +44,8 @@
     </table>
 
     <mat-paginator
-      [pageSizeOptions]="[5, 10, 25, 50, 100, 250]"
-      (page)="onPaginateChange($event)">
+      [pageSize]="5"
+      [pageSizeOptions]="[5, 10, 25, 50, 100, 250]">
     </mat-paginator>
   </div>
 </div>

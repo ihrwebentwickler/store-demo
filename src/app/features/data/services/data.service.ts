@@ -7,8 +7,6 @@ import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { RestApiService } from '../../../shared/services/rest-api/rest-api.service';
 import { ID } from '@datorama/akita';
-import { TableStore } from '../../../state/stores/table.store';
-
 
 @Injectable({
   providedIn: 'root',
@@ -18,8 +16,7 @@ export class DataService {
   constructor(
     private readonly filmsQuery: FilmsQuery,
     private readonly filmsStore: FilmsStore,
-    private readonly restApiService: RestApiService,
-    private readonly tableStore: TableStore
+    private readonly restApiService: RestApiService
   ) {
   }
 

@@ -1,14 +1,11 @@
 import { SortDirection } from '@angular/material/sort';
 import { ID } from '@datorama/akita';
 
-export interface TableProperties {
+export type TableProperties = {
   id: ID;
-  sort: {
-    direction: SortDirection;
-    active: string;
-  };
-  filter: {
-    lastValue: string;
-  };
-  itemsPerPage: number
-}
+  sortDirection: SortDirection;
+  sortActive: string;
+  filterValue: string;
+  itemsPerPage: number;
+  pageIndex: number;
+};
